@@ -20,19 +20,20 @@ passport.use(
 	new GoogleStrategy({
 		clientID: keys.googleClientID, 
 		clientSecret: keys.googleClientSecret,
-		callbackURL: 'https://frozen-island-28440.herokuapp.com/auth/google/callback',
+		callbackURL: '/auth/google/callback',
 		proxy: true
-	}, (accessToken, refreshToken, profile, done) => {
-		User.findOne({ googleId: profile.id }).then((existingUser) => { 
+	}, async (accessToken, refreshToken, profile, done) => {
+		const existingUser = await User.findOne({ googleId: profile.id });
+		
 			if(existingUser){
 				//we already have a record with the given profile id
 				done(null, existingUser); //done(error, obbject)
-			} else {
-				//create a new user, we dont have a record with this user id
-				new User({ googleId: profile.id }).save().then((user) => done(null, user)); //creates new model instance - saves instance - always make us eof object in callback
 			}
-		});
+			//create a new user, we dont have a record with this user id
+			const user = await new User({ googleId: profile.id }).save();
+			return done(null, user);
 
+			
 		
 	})
 );
