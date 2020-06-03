@@ -1,5 +1,6 @@
+//action creator file
 import axios from 'axios';
-import { FETCH_USER } from './types';
+import { FETCH_USER, FETCH_SURVEYS } from './types';
 
 
 //if theres only one expression to be returned in arrow function then can remove outside curly braces as well as return statement
@@ -9,23 +10,21 @@ export const fetchUser = () => async dispatch => {
 	dispatch({ type: FETCH_USER, payload: res.data });
 };
 
-export const handleToken = (token) => async dispatch => {
+export const handleToken = token => async dispatch => {
 	const res = await axios.post('/api/stripe', token);
 
 	dispatch({ type: FETCH_USER, payload: res.data }); 
 };
-//highly modified syntax above
 
-// export const fetchUser = () => {
-// 	return (dispatch) => {
-// 		axios
-// 		.get('/api/current_user')
-// 		.then(res => dispatch({ type: FETCH_USER, payload: res }));
-// 	};
-// };
+export const submitSurvey = (values, history) => async dispatch => {
+	const res = await axios.post('/api/surveys', values);
 
-// export const fetchUser = () => async dispatch => {
-// 	const res = await axios.get('/api/current_user')
+	history.push('/surveys');
+	dispatch({ type: FETCH_USER, payload: res.data });
+};
 
-// 	dispatch({ type: FETCH_USER, payload: res });
-// };
+export const fetchSurveys = () => async dispatch => {
+	const res = await axios.get('/api/surveys');
+
+	dispatch({ type: FETCH_SURVEYS, payload: res.data });
+};
