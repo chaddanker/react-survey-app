@@ -20,13 +20,15 @@ class App extends Component {  //setup routing rules for app //header always on 
 
 	render() {
 		return(
-			<div className="container">
+			<div>
 				<BrowserRouter>
-					<div className="container"> 
+					<div> 
 						<Header />
-						<Route exact path="/" component={Landing} />
-						<Route exact path="/surveys" component={Dashboard} />
-						<Route path="/surveys/new" component={SurveyNew} />
+						<div style={{ width: '100vw' }}>
+							<Route exact path="/" component={Landing} />
+							<Route exact path="/surveys" component={Dashboard} />
+							<Route path="/surveys/new" component={SurveyNew} />
+						</div>
 					</div>
 				</BrowserRouter>
 			</div>

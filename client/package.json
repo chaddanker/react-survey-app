@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@nivo/pie": "^0.62.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
@@ -11,13 +12,16 @@
     "materialize-css": "^1.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-id-swiper": "^3.0.0",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "react-stripe-checkout": "^2.6.3",
+    "recharts": "^1.8.5",
     "redux": "^4.0.5",
     "redux-form": "^8.3.6",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "swiper": "^5.4.1"
   },
   "scripts": {
     "start": "react-scripts start",
